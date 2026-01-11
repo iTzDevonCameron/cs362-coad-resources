@@ -1,0 +1,6 @@
+# config/locales/es.yml
+es:
+  hello: "Hola mundo"
+  products:
+    index:
+      title: "Productos"
