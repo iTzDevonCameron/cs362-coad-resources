@@ -64,4 +64,36 @@ RSpec.describe Ticket, type: :model do
             expect(Ticket.closed).to include(closed_ticket)
         end
     end
+
+    describe "#open?" do
+      it "is true when not closed" do
+        ticket.closed = false
+        expect(ticket.open?).to be true
+      end
+
+      it "is false when closed" do
+        ticket.closed = true
+        expect(ticket.open?).to be false
+      end
+    end
+
+    describe "#captured?" do
+      it "is false when no organization" do
+        ticket.organization = nil
+        expect(ticket.captured?).to be false
+      end
+
+      it "is true when organization present" do
+        # ticket.organization = build(:organization)
+        ticket.organization = Organization.new
+        expect(ticket.captured?).to be true
+      end
+    end
+
+    describe "#to_s" do
+      it "returns Ticket <id>" do
+        ticket.id = 123
+        expect(ticket.to_s).to eq("Ticket 123")
+      end
+    end
 end
