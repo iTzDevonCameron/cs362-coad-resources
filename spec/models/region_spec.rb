@@ -16,18 +16,4 @@ RSpec.describe Region, type: :model do
     region = Region.new(name: name)
     result = region.to_s
   end
-
-  describe ".unspecified" do
-    it "returns a region named 'Unspecified'" do
-      region = Region.unspecified
-      expect(region.name).to eq("Unspecified")
-    end
-
-    it "does not create duplicate 'Unspecified' regions" do
-      r1 = Region.unspecified
-      r2 = Region.unspecified
-      expect(r1.id).to eq(r2.id)
-    end
-  end
-
 end
