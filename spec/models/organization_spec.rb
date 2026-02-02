@@ -8,6 +8,18 @@ RSpec.describe Organization, type: :model do
     let (:organization) { Organization.new }
 
 
+    describe "Responds to attributes" do
+        expect(:organization).to respond_to(agreement_one)
+        expect(:organization).to respond_to(agreement_two)
+        expect(:organization).to respond_to(agreement_three)
+        expect(:organization).to respond_to(agreement_four)
+        expect(:organization).to respond_to(agreement_five)
+        expect(:organization).to respond_to(agreement_six)
+        expect(:organization).to respond_to(agreement_seven)
+        expect(:organization).to respond_to(agreement_eight)
+
+
+
     describe "possession tests" do
         it "should have multiple users" do
             should have_many(:users)
