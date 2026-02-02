@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe TicketsHelper, type: :helper do
-
+  describe "Formats the phone number" do
+    let (:helper) { Object.new.extend(TicketsHelper) }
+    it "returns a formatted phone number (+1-111-111-1111)" do
+      expect(helper.format_phone_number('5555555555')).to eq "+15555555555"
+    end
+  end
 end
