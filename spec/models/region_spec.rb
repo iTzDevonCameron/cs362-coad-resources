@@ -16,4 +16,9 @@ RSpec.describe Region, type: :model do
     region = Region.new(name: name)
     result = region.to_s
   end
+
+  it "can find or create by name" do
+    region = Region.new()
+    result = Region.unspecified
+  end
 end
