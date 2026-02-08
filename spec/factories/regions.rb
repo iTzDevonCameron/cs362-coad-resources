@@ -1,5 +1,6 @@
 FactoryBot.define do
+  sequence(:region_name) { |n| "Region #{n}" }
   factory :region do
-    name { "Region #{Faker::Address.unique.state}" }
+    name { generate(:region_name) }
   end
 end

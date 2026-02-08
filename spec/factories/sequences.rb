@@ -1,6 +1,6 @@
 FactoryBot.define do
   sequence :emails do |n|
-    "fakeuser{n}@fakedomain{n}.com"
+    "fakeuser#{n}@fakedomain#{n}.com"
   end
 
   sequence :password do |n|
