@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { create(:user, :name => "Some other name") }
+  before do
+    @user1 = build(:user, :name => "User 1")
+    @user2 = build(:user, :name => "User 2")
+  end
   it "exists" do
-    User.new
+    expect(@user1).to be_a(:user)
   end
   it "Belongs to organization" do
     should belong_to(:organization).optional
   end
 
   describe "validation tests" do
-    let (:test_user) { User.new(
-      email: "test@example.com",
-      password: "testpassword"
-    ) }
+    let (:test_user) { @user1 }
     it "must have a valid email" do  
       should validate_presence_of(:email).on(:create)    
     end
