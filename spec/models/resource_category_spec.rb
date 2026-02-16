@@ -4,6 +4,11 @@ RSpec.describe ResourceCategory, type: :model do
   it "exists" do
     ResourceCategory.new
   end
+  describe "factory" do
+    it "builds a valid resouce category" do
+      expect(build(:resource_category)).to be_a(ResourceCategory)
+    end
+  end
 
   describe "validation tests" do
     let (:test_category) { ResourceCategory.new(
