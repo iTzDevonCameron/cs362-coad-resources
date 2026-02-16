@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
   it "exists" do
-    Organization.new
+    expect(build(:organization)).to be_valid
   end
 
   describe "Responds to attributes" do
-    let (:organization) { Organization.new } 
+    let (:organization) { build(:organization) } 
     it "Should respond to" do
       expect(organization).to respond_to(:agreement_one)
       expect(organization).to respond_to(:agreement_two)
@@ -32,16 +32,9 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "validation tests" do
-    let (:test_organization) { Organization.new(
-      email: "test@example.com",
-      name: "test name",
-      phone: "9035768145",
-      status: "active",
-      primary_name: "primary",
-      secondary_name: "secondary",
-      secondary_phone: "5418675309",
-      description: "description"
-    ) }
+    subject { build(:organization) } 
+    before { create(:organization) }
+
     it "must have a valid email" do  
       should validate_presence_of(:email).on(:create)    
     end
@@ -63,24 +56,23 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "Organization status" do
-    let (:test_organization) { Organization.new }
+    let (:organization) { build(:organization) } 
     it "returns default status of submitted" do
-      expect(test_organization.status).to eq "submitted"
+      expect(organization.status).to eq "submitted"
     end
     it "returns status of approved" do
-      test_organization.approve
-      expect(test_organization.status).to eq "approved"
+      organization.approve
+      expect(organization.status).to eq "approved"
     end
     it "returns status of rejected" do
-      test_organization.reject
-      expect(test_organization.status).to eq "rejected"
+      organization.reject
+      expect(organization.status).to eq "rejected"
     end
   end
   
   describe "Name is set" do
-    let (:test_organization) {Organization.new(name: "test_org")}
-    it "Prints the name of the organization" do
-      expect(test_organization.to_s).to eq "test_org"
+    it "returns the name of the organization" do
+      expect(build(:organization).to_s).to eq "Test Org"
     end
   end
 end
