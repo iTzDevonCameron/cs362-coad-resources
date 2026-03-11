@@ -195,4 +195,20 @@ RSpec.describe TicketsController, type: :controller do
       expect(Ticket.exists?(ticket.id)).to eq(false)
     end
   end
+
+  describe "#ticket_params" do
+    it "returns permitted ticket params" do
+      controller.params = ActionController::Parameters.new(
+        ticket: { name: "test" }
+      )
+
+      expect(controller.send(:ticket_params).to_h).to include("name" => "test")
+    end
+  end
+
+
+
+
 end
+
+
