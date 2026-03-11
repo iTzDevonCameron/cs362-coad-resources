@@ -1,8 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe DashboardController, type: :controller do
+ 
+
+ 
+ 
+ 
   let(:admin) { create(:user, role: :admin) }
   let(:non_admin) { create(:user) }
+
+  let(:approved_org) { create(:organization, status: :approved) }
+  let(:unapproved_org) { create(:organization) }
+
+  let(:approved_user) { create(:user, organization: approved_org) }
+  let(:unapproved_user) { create(:user) }
 
   describe "#after_sign_in_path_for" do
     it "returns the dashboard path" do
@@ -43,6 +54,12 @@ RSpec.describe DashboardController, type: :controller do
         get :index
         expect(response).to redirect_to(new_user_session_path)
       end
+    end
+  end
+  
+  describe "Dashboard" do
+    it "exists" do
+      expect(Dashboard).to be_a(Module)
     end
   end
 end
